@@ -1,0 +1,43 @@
+% Frise chronologique de l'apprentissage auto-supervisé en vision (année de publication)
+\begin{tikzpicture}[
+    ev/.style={rounded corners=2pt, minimum width=16mm, minimum height=4.6mm, inner sep=1pt,
+               font=\scriptsize\bfseries, text=white, align=center},
+    P/.style={ev, fill=grisE}, C/.style={ev, fill=bleuE}, D/.style={ev, fill=vertE},
+    M/.style={ev, fill=orangeE}, X/.style={ev, fill=violetE}]
+  \def\dx{1.78}
+  \draw[line width=1.2pt, grisE, -{Stealth[length=2.5mm]}] (-0.6,0) -- (7*\dx+0.9,0);
+  \foreach \y [count=\i from 0] in {2016,2018,2020,2021,2022,2023,2024,2025} {
+    \fill[grisE] (\i*\dx,0) circle (1.4pt);
+    \node[font=\sffamily\footnotesize\bfseries, text=grisE, below=1pt] at (\i*\dx,0) {\y};
+  }
+  % chaque année : pile d'événements (de bas en haut)
+  \node[P] at (0*\dx,0.45) {Jigsaw};
+  \node[P] at (1*\dx,0.45) {Rotation};
+  \node[C] at (1*\dx,0.97) {InstDisc};
+  \node[C] at (1*\dx,1.49) {CPC};
+  \node[C] at (2*\dx,0.45) {MoCo};
+  \node[C] at (2*\dx,0.97) {SimCLR};
+  \node[D] at (2*\dx,1.49) {BYOL};
+  \node[C] at (2*\dx,2.01) {SwAV};
+  \node[D] at (3*\dx,0.45) {DINO};
+  \node[C] at (3*\dx,0.97) {MoCo v3};
+  \node[X] at (3*\dx,1.49) {CLIP};
+  \node[X] at (3*\dx,2.01) {ViT};
+  \node[M] at (4*\dx,0.45) {BEiT};
+  \node[M] at (4*\dx,0.97) {MAE};
+  \node[M] at (4*\dx,1.49) {SimMIM};
+  \node[D] at (4*\dx,2.01) {iBOT};
+  \node[D] at (5*\dx,0.45) {DINOv2};
+  \node[X] at (5*\dx,0.97) {I-JEPA};
+  \node[X] at (5*\dx,1.49) {SAM};
+  \node[D] at (6*\dx,0.45) {Registers};
+  \node[D] at (7*\dx,0.45) {DINOv3};
+  % légende
+  \begin{scope}[shift={(0,-0.95)}, every node/.style={font=\scriptsize, text=grisE, anchor=west}]
+    \fill[grisE]    (0.0,0) rectangle +(0.25,0.25); \node at (0.3,0.12)  {Tâches prétextes};
+    \fill[bleuE]    (2.75,0) rectangle +(0.25,0.25); \node at (3.05,0.12) {Contrastif};
+    \fill[vertE]    (4.85,0) rectangle +(0.25,0.25); \node at (5.15,0.12) {Auto-distillation};
+    \fill[orangeE]  (7.55,0) rectangle +(0.25,0.25); \node at (7.85,0.12) {Masquage (MIM)};
+    \fill[violetE] (10.45,0) rectangle +(0.25,0.25); \node at (10.75,0.12) {Autres VFM / architectures};
+  \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,25 @@
+% DINO : auto-distillation sans labels (élève / professeur)
+\begin{tikzpicture}
+  \node[nbox, minimum width=15mm, minimum height=15mm] (x) at (0,0) {Image\\$x$};
+  % professeur (haut)
+  \node[obox, minimum width=22mm, align=center] (vt) at (2.95, 1.25) {2 vues\\\textbf{globales}};
+  \node[box, minimum width=22mm] (ft) at (6.0, 1.25) {Professeur $g_{\theta_t}$};
+  \node[nbox, minimum width=24mm] (ct) at (9.1, 1.25) {centrage $-c$\\softmax$(\cdot/\tau_t)$};
+  % élève (bas)
+  \node[obox, minimum width=22mm, align=center] (vs) at (2.95,-1.25) {vues globales\\+ \textbf{locales}};
+  \node[box, minimum width=22mm] (fs) at (6.0,-1.25) {Élève $g_{\theta_s}$};
+  \node[nbox, minimum width=24mm] (cs) at (9.1,-1.25) {softmax$(\cdot/\tau_s)$};
+  \draw[arr] (x.east) -- (vt.west); \draw[arr] (x.east) -- (vs.west);
+  \draw[arr] (vt) -- (ft); \draw[arr] (ft) -- (ct);
+  \draw[arr] (vs) -- (fs); \draw[arr] (fs) -- (cs);
+  % EMA
+  \draw[arr, vertE, line width=1.1pt] (fs.north) -- node[lbl, right, text=vertE, align=left]{\textbf{EMA}\\$\theta_t \leftarrow \lambda\theta_t + (1-\lambda)\theta_s$} (ft.south);
+  % perte
+  \node[gbox, minimum width=27mm, minimum height=16mm] (L) at (12.6,0) {\textbf{Perte}\\$-\,P_t \log P_s$\\{\scriptsize (entropie croisée)}};
+  \draw[arr] (ct.east) -- coordinate[pos=0.62] (sg) node[lbl, below, sloped, pos=0.3]{$P_t$} (L.north west);
+  \draw[arr] (cs.east) -- node[lbl, below, sloped]{$P_s$} (L.south west);
+  \draw[rougeE, line width=1.1pt] ($(sg)+(-0.08,0.17)$) -- ($(sg)+(0.08,-0.17)$);
+  \node[font=\scriptsize\bfseries, text=rougeE, above=3pt] at (sg) {stop-grad};
+  \node[lbl] at (2.95,-2.3) {multi-crop : $2\times224^2$ + plusieurs $96^2$};
+  \node[lbl] at (9.1,-2.3) {$\tau_t < \tau_s$ : professeur « aiguisé »};
+\end{tikzpicture}

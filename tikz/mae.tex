@@ -1,0 +1,47 @@
+% Masked Autoencoder (MAE) : encodeur asymétrique sur les seuls patches visibles
+\begin{tikzpicture}[x=1cm, y=1cm]
+  % couleurs d'une "image" 4x4 : ciel / animal / herbe
+  \colorlet{B1}{bleuE!40}\colorlet{B2}{bleuE!25}\colorlet{O1}{orangeE!85}\colorlet{O2}{orangeE!55}
+  \colorlet{G1}{vertE!55}\colorlet{G2}{vertE!35}
+  \def\s{0.36}
+  % grille : \grid{x0}{y0}{masque?}
+  \def\maegrid#1#2#3{%
+    \foreach \c [count=\k from 0] in {B1,B2,B1,B2, B2,O1,O2,B1, G1,O2,O1,G2, G2,G1,G2,G1} {%
+      \pgfmathtruncatemacro{\r}{int(\k/4)}\pgfmathtruncatemacro{\q}{mod(\k,4)}%
+      \pgfmathtruncatemacro{\vis}{(\k==2)||(\k==5)||(\k==11)||(\k==12)}%
+      \ifnum#3=1 \ifnum\vis=0 \def\cc{grisE!25}\else\def\cc{\c}\fi\else\def\cc{\c}\fi
+      \filldraw[fill=\cc, draw=white, line width=0.6pt] (#1+\q*\s, #2-\r*\s) rectangle +(\s,-\s);
+    }}
+  % (1) image masquée
+  \maegrid{0}{0.72}{1}
+  \node[lbl, below] at (0.72,-0.8) {image en patches\\\textbf{75 \% masqués}};
+  % (2) patches visibles -> encodeur
+  \foreach \c [count=\k from 0] in {B1,O1,G2,G2} \filldraw[fill=\c, draw=white, line width=0.6pt] (2.25,0.72-\k*\s) rectangle +(\s,-\s);
+  \node[lbl, below] at (2.43,-0.8) {25 \%\\visibles};
+  \draw[arr] (1.55,0) -- (2.15,0);
+  \node[box, minimum width=20mm, minimum height=26mm, line width=1.2pt] (enc) at (4.2,0)
+    {\textbf{Encodeur}\\ViT\\{\scriptsize (grand)}\\{\scriptsize patches visibles}\\{\scriptsize seulement}};
+  \draw[arr] (2.7,0) -- (enc.west);
+  % (3) séquence complète : tokens encodés + mask tokens
+  \foreach \k in {0,...,15} {
+    \pgfmathtruncatemacro{\vis}{(\k==2)||(\k==5)||(\k==11)||(\k==12)}
+    \ifnum\vis=1 \def\cc{bleuE!70}\else\def\cc{grisE!25}\fi
+    \filldraw[fill=\cc, draw=white, line width=0.5pt] (6.05, 1.44-\k*0.18) rectangle +(0.36,-0.18);
+  }
+  \draw[arr] (enc.east) -- (6.0,0);
+  \node[lbl, above] at (6.23,1.5) {+ mask tokens\\+ pos. emb.};
+  \node[obox, minimum width=16mm, minimum height=18mm] (dec) at (7.75,0)
+    {\textbf{Décodeur}\\{\scriptsize léger}\\{\scriptsize 8 blocs, 512-d}};
+  \draw[arr] (6.48,0) -- (dec.west);
+  % (4) reconstruction
+  \maegrid{9.15}{0.72}{0}
+  \draw[arr] (dec.east) -- (9.1,0);
+  \node[lbl, below] at (9.87,-0.8) {reconstruction\\des pixels};
+  % (5) cible
+  \maegrid{12.1}{0.72}{0}
+  \node[lbl, below] at (12.82,-0.8) {image\\originale (cible)};
+  \draw[<->, rougeE, line width=0.9pt] (10.7,0) -- node[font=\scriptsize\bfseries, text=rougeE, above, align=center]{MSE sur\\patches\\masqués} (12.0,0);
+  % après pré-entraînement
+  \draw[decorate, decoration={brace, amplitude=4pt, mirror}, grisE] (3.2,-1.55) -- (5.2,-1.55)
+    node[lbl, midway, below=4pt]{seul l'encodeur est\\conservé pour le transfert};
+\end{tikzpicture}

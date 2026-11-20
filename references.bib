@@ -1,0 +1,238 @@
+% ============================================================
+% Sujet 5 - Vision Foundation Models and Self-Supervised Learning
+% Bibliographie partagée (présentation Beamer + rapport)
+% ============================================================
+
+% ---------- Foundation models & architectures ----------
+@article{bommasani2021foundation,
+  title   = {On the Opportunities and Risks of Foundation Models},
+  author  = {Bommasani, Rishi and Hudson, Drew A. and Adeli, Ehsan and others},
+  journal = {arXiv preprint arXiv:2108.07258},
+  year    = {2021}
+}
+
+@inproceedings{dosovitskiy2021vit,
+  title     = {An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale},
+  author    = {Dosovitskiy, Alexey and Beyer, Lucas and Kolesnikov, Alexander and Weissenborn, Dirk and Zhai, Xiaohua and Unterthiner, Thomas and Dehghani, Mostafa and Minderer, Matthias and Heigold, Georg and Gelly, Sylvain and Uszkoreit, Jakob and Houlsby, Neil},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021}
+}
+
+@inproceedings{touvron2021deit,
+  title     = {Training Data-Efficient Image Transformers \& Distillation through Attention},
+  author    = {Touvron, Hugo and Cord, Matthieu and Douze, Matthijs and Massa, Francisco and Sablayrolles, Alexandre and J{\'e}gou, Herv{\'e}},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2021}
+}
+
+@inproceedings{devlin2019bert,
+  title     = {{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding},
+  author    = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  booktitle = {Proceedings of NAACL-HLT},
+  year      = {2019}
+}
+
+% ---------- Self-supervised learning : surveys & pretext tasks ----------
+@article{balestriero2023cookbook,
+  title   = {A Cookbook of Self-Supervised Learning},
+  author  = {Balestriero, Randall and Ibrahim, Mark and Sobal, Vlad and Morcos, Ari and Shekhar, Shashank and Goldstein, Tom and Bordes, Florian and Bardes, Adrien and Mialon, Gregoire and Tian, Yuandong and Schwarzschild, Avi and Wilson, Andrew Gordon and Geiping, Jonas and Garrido, Quentin and Fernandez, Pierre and Bar, Amir and Pirsiavash, Hamed and LeCun, Yann and Goldblum, Micah},
+  journal = {arXiv preprint arXiv:2304.12210},
+  year    = {2023}
+}
+
+@inproceedings{noroozi2016jigsaw,
+  title     = {Unsupervised Learning of Visual Representations by Solving Jigsaw Puzzles},
+  author    = {Noroozi, Mehdi and Favaro, Paolo},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2016}
+}
+
+@inproceedings{gidaris2018rotation,
+  title     = {Unsupervised Representation Learning by Predicting Image Rotations},
+  author    = {Gidaris, Spyros and Singh, Praveer and Komodakis, Nikos},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2018}
+}
+
+@inproceedings{wu2018instdisc,
+  title     = {Unsupervised Feature Learning via Non-Parametric Instance Discrimination},
+  author    = {Wu, Zhirong and Xiong, Yuanjun and Yu, Stella X. and Lin, Dahua},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2018}
+}
+
+% ---------- Contrastive learning ----------
+@article{oord2018cpc,
+  title   = {Representation Learning with Contrastive Predictive Coding},
+  author  = {van den Oord, Aaron and Li, Yazhe and Vinyals, Oriol},
+  journal = {arXiv preprint arXiv:1807.03748},
+  year    = {2018}
+}
+
+@inproceedings{he2020moco,
+  title     = {Momentum Contrast for Unsupervised Visual Representation Learning},
+  author    = {He, Kaiming and Fan, Haoqi and Wu, Yuxin and Xie, Saining and Girshick, Ross},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2020}
+}
+
+@inproceedings{chen2020simclr,
+  title     = {A Simple Framework for Contrastive Learning of Visual Representations},
+  author    = {Chen, Ting and Kornblith, Simon and Norouzi, Mohammad and Hinton, Geoffrey},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2020}
+}
+
+@inproceedings{grill2020byol,
+  title     = {Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning},
+  author    = {Grill, Jean-Bastien and Strub, Florian and Altch{\'e}, Florent and Tallec, Corentin and Richemond, Pierre H. and others},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2020}
+}
+
+@inproceedings{caron2020swav,
+  title     = {Unsupervised Learning of Visual Features by Contrasting Cluster Assignments},
+  author    = {Caron, Mathilde and Misra, Ishan and Mairal, Julien and Goyal, Priya and Bojanowski, Piotr and Joulin, Armand},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2020}
+}
+
+@inproceedings{chen2021mocov3,
+  title     = {An Empirical Study of Training Self-Supervised Vision Transformers},
+  author    = {Chen, Xinlei and Xie, Saining and He, Kaiming},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2021}
+}
+
+% ---------- Masked Image Modeling ----------
+@inproceedings{bao2022beit,
+  title     = {{BEiT}: {BERT} Pre-Training of Image Transformers},
+  author    = {Bao, Hangbo and Dong, Li and Piao, Songhao and Wei, Furu},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2022}
+}
+
+@inproceedings{he2022mae,
+  title     = {Masked Autoencoders Are Scalable Vision Learners},
+  author    = {He, Kaiming and Chen, Xinlei and Xie, Saining and Li, Yanghao and Doll{\'a}r, Piotr and Girshick, Ross},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2022}
+}
+
+@inproceedings{xie2022simmim,
+  title     = {{SimMIM}: A Simple Framework for Masked Image Modeling},
+  author    = {Xie, Zhenda and Zhang, Zheng and Cao, Yue and Lin, Yutong and Bao, Jianmin and Yao, Zhuliang and Dai, Qi and Hu, Han},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2022}
+}
+
+@inproceedings{zhou2022ibot,
+  title     = {{iBOT}: Image {BERT} Pre-Training with Online Tokenizer},
+  author    = {Zhou, Jinghao and Wei, Chen and Wang, Huiyu and Shen, Wei and Xie, Cihang and Yuille, Alan and Kong, Tao},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2022}
+}
+
+@inproceedings{assran2023ijepa,
+  title     = {Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture},
+  author    = {Assran, Mahmoud and Duval, Quentin and Misra, Ishan and Bojanowski, Piotr and Vincent, Pascal and Rabbat, Michael and LeCun, Yann and Ballas, Nicolas},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2023}
+}
+
+% ---------- Self-distillation : DINO family ----------
+@inproceedings{caron2021dino,
+  title     = {Emerging Properties in Self-Supervised Vision Transformers},
+  author    = {Caron, Mathilde and Touvron, Hugo and Misra, Ishan and J{\'e}gou, Herv{\'e} and Mairal, Julien and Bojanowski, Piotr and Joulin, Armand},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2021}
+}
+
+@article{oquab2024dinov2,
+  title   = {{DINOv2}: Learning Robust Visual Features without Supervision},
+  author  = {Oquab, Maxime and Darcet, Timoth{\'e}e and Moutakanni, Th{\'e}o and Vo, Huy and Szafraniec, Marc and others},
+  journal = {Transactions on Machine Learning Research (TMLR)},
+  year    = {2024},
+  note    = {arXiv:2304.07193}
+}
+
+@inproceedings{darcet2024registers,
+  title     = {Vision Transformers Need Registers},
+  author    = {Darcet, Timoth{\'e}e and Oquab, Maxime and Mairal, Julien and Bojanowski, Piotr},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024}
+}
+
+@article{simeoni2025dinov3,
+  title   = {{DINOv3}},
+  author  = {Sim{\'e}oni, Oriane and others},
+  journal = {arXiv preprint arXiv:2508.10104},
+  year    = {2025}
+}
+
+@inproceedings{sablayrolles2019koleo,
+  title     = {Spreading Vectors for Similarity Search},
+  author    = {Sablayrolles, Alexandre and Douze, Matthijs and Schmid, Cordelia and J{\'e}gou, Herv{\'e}},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2019}
+}
+
+% ---------- Other vision foundation models ----------
+@inproceedings{radford2021clip,
+  title     = {Learning Transferable Visual Models From Natural Language Supervision},
+  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and Krueger, Gretchen and Sutskever, Ilya},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2021}
+}
+
+@inproceedings{kirillov2023sam,
+  title     = {Segment Anything},
+  author    = {Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and Mao, Hanzi and Rolland, Chloe and Gustafson, Laura and Xiao, Tete and Whitehead, Spencer and Berg, Alexander C. and Lo, Wan-Yen and Doll{\'a}r, Piotr and Girshick, Ross},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2023}
+}
+
+% ---------- Données, outils, évaluation ----------
+@inproceedings{parkhi2012pets,
+  title     = {Cats and Dogs},
+  author    = {Parkhi, Omkar M. and Vedaldi, Andrea and Zisserman, Andrew and Jawahar, C. V.},
+  booktitle = {IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2012}
+}
+
+@article{vandermaaten2008tsne,
+  title   = {Visualizing Data using t-{SNE}},
+  author  = {van der Maaten, Laurens and Hinton, Geoffrey},
+  journal = {Journal of Machine Learning Research},
+  volume  = {9},
+  pages   = {2579--2605},
+  year    = {2008}
+}
+
+@inproceedings{wolf2020transformers,
+  title     = {Transformers: State-of-the-Art Natural Language Processing},
+  author    = {Wolf, Thomas and Debut, Lysandre and Sanh, Victor and others},
+  booktitle = {Proceedings of EMNLP: System Demonstrations},
+  year      = {2020}
+}
+
+@misc{wightman2019timm,
+  title        = {PyTorch Image Models (timm)},
+  author       = {Wightman, Ross},
+  year         = {2019},
+  howpublished = {\url{https://github.com/huggingface/pytorch-image-models}}
+}
+
+@misc{dinov2github,
+  title        = {{DINOv2} : dépôt officiel (code et poids pré-entraînés)},
+  author       = {{Meta AI Research}},
+  year         = {2023},
+  howpublished = {\url{https://github.com/facebookresearch/dinov2}}
+}
+
+@misc{hfdinov2doc,
+  title        = {{DINOv2} -- documentation Hugging Face Transformers},
+  author       = {{Hugging Face}},
+  year         = {2024},
+  howpublished = {\url{https://huggingface.co/docs/transformers/model_doc/dinov2}}
+}

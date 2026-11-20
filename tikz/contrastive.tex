@@ -1,0 +1,23 @@
+% Apprentissage contrastif (schéma SimCLR)
+\begin{tikzpicture}
+  \node[nbox, minimum width=15mm, minimum height=15mm] (x) at (0,0) {Image\\$x$};
+  \node[obox, minimum width=16mm] (vi) at (2.9, 1.1) {$\tilde{x}_i$};
+  \node[obox, minimum width=16mm] (vj) at (2.9,-1.1) {$\tilde{x}_j$};
+  \draw[arr] (x.east) -- node[lbl, above, sloped]{$t \sim \mathcal{T}$} (vi.west);
+  \draw[arr] (x.east) -- node[lbl, below, sloped]{$t' \sim \mathcal{T}$} (vj.west);
+  \node[box, minimum width=20mm] (fi) at (5.6, 1.1) {Encodeur $f$};
+  \node[box, minimum width=20mm] (fj) at (5.6,-1.1) {Encodeur $f$};
+  \node[box, minimum width=20mm] (gi) at (8.6, 1.1) {Projecteur $g$};
+  \node[box, minimum width=20mm] (gj) at (8.6,-1.1) {Projecteur $g$};
+  \draw[arr] (vi) -- (fi); \draw[arr] (vj) -- (fj);
+  \draw[arr] (fi) -- node[lbl, above]{$h_i$} (gi); \draw[arr] (fj) -- node[lbl, below]{$h_j$} (gj);
+  \draw[<->, grisE, dashed, line width=0.7pt] (fi) -- node[lbl, right, fill=white, inner sep=1pt]{poids partagés} (fj);
+  \node[gbox, minimum width=34mm, minimum height=24mm] (L) at (12.6,0) {};
+  \node[font=\small\bfseries, text=vertE] at (12.6,0.78) {InfoNCE};
+  \node[font=\scriptsize, align=center] at (12.6,-0.15)
+    {\textcolor{vertE}{\textbf{rapprocher}} $z_i$ et $z_j$\\(même image)\\[2pt]\textcolor{rougeE}{\textbf{éloigner}} $z_i$ des $z_k$\\(autres images du batch)};
+  \draw[arr] (gi.east) -- node[lbl, above]{$z_i$} (L.north west|-gi);
+  \draw[arr] (gj.east) -- node[lbl, below]{$z_j$} (L.south west|-gj);
+  \node[lbl] at (2.9,-2.05) {augmentations : recadrage, couleur,\\flou, retournement\dots};
+  \node[lbl] at (7.1,-2.05) {$f$ (ResNet / ViT) gardé ;\\$g$ (MLP) jeté après l'entraînement};
+\end{tikzpicture}

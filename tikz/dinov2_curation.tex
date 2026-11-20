@@ -1,0 +1,19 @@
+% DINOv2 : pipeline automatique de curation des données (LVD-142M)
+\begin{tikzpicture}
+  \node[nbox, minimum width=31mm, minimum height=15mm] (web) at (0,0.9)
+    {\textbf{Pool web non curé}\\{\scriptsize 1,2 milliard d'images}};
+  \node[gbox, minimum width=31mm, minimum height=15mm] (cur) at (0,-0.9)
+    {\textbf{Sources curées}\\{\scriptsize ImageNet-22k/1k, Google}\\{\scriptsize Landmarks, fine-grained\dots}};
+  \node[box, minimum width=30mm, minimum height=15mm] (emb) at (4.3,0.9)
+    {Embeddings\\{\scriptsize ViT auto-supervisé}};
+  \node[box, minimum width=30mm, minimum height=15mm] (dedup) at (8.2,0.9)
+    {Déduplication\\{\scriptsize copy detection}};
+  \node[box, minimum width=30mm, minimum height=15mm] (ret) at (8.2,-0.9)
+    {Recherche par\\similarité\\{\scriptsize k-NN / clustering}};
+  \node[obox, minimum width=28mm, minimum height=19mm, line width=1.3pt] (lvd) at (12.2,0)
+    {\textbf{LVD-142M}\\{\scriptsize 142 M images}\\{\scriptsize curées, diverses}};
+  \draw[arr] (web) -- (emb); \draw[arr] (emb) -- (dedup); \draw[arr] (dedup) -- (ret);
+  \draw[arr] (cur.east) -- node[lbl, below]{requêtes} (ret.west);
+  \draw[arr] (ret.east) -- (lvd);
+  \node[lbl] at (6.2,-2.15) {aucun label ni métadonnée textuelle : seule la \textbf{similarité visuelle} sert à sélectionner les images};
+\end{tikzpicture}

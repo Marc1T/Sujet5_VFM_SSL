@@ -1,0 +1,23 @@
+% Principe général du Self-Supervised Learning : pré-entraînement puis transfert
+\begin{tikzpicture}
+  % Étape 1
+  \node[font=\small\bfseries, text=bleuE, anchor=west] at (-0.2,1.5) {\large\ding{172}\normalsize\ Pré-entraînement auto-supervisé (sans labels humains)};
+  \node[nbox, minimum width=26mm] (u) at (1.1,0.4) {Images\\non étiquetées};
+  \node[obox, minimum width=34mm] (p) at (5.0,0.4) {Tâche prétexte\\{\scriptsize la supervision est \textbf{tirée des données}}};
+  \node[box, minimum width=24mm, line width=1.2pt] (f) at (8.9,0.4) {Encodeur $f_\theta$};
+  \node[obox, minimum width=26mm] (l) at (12.4,0.4) {Perte\\{\scriptsize InfoNCE, MSE, CE\dots}};
+  \draw[arr] (u) -- (p); \draw[arr] (p) -- (f); \draw[arr] (f) -- (l);
+  \draw[darr, orangeE] (l.south) -- ++(0,-0.4) -| (9.7,0.0);
+  \node[lbl, text=orangeE] at (11.2,-0.25) {rétro-propagation};
+  \node[lbl, below=1pt of p.south, yshift=-3pt] {vues augmentées, patches masqués,\\rotation, ordre des pièces\dots};
+  % séparateur
+  \draw[grisE!60, dashed] (-0.2,-1.0) -- (13.9,-1.0);
+  % Étape 2
+  \node[font=\small\bfseries, text=vertE, anchor=west] at (-0.2,-1.4) {\large\ding{173}\normalsize\ Transfert vers une tâche aval};
+  \node[gbox, minimum width=30mm] (d) at (5.0,-2.5) {Quelques images\\étiquetées};
+  \node[box, minimum width=24mm, line width=1.2pt] (f2) at (8.9,-2.5) {Encodeur $f_\theta$\\{\scriptsize gelé ou affiné}};
+  \node[gbox, minimum width=26mm] (h) at (12.4,-2.5) {Tête légère\\{\scriptsize $\rightarrow$ classe, masque\dots}};
+  \draw[arr] (d) -- (f2); \draw[arr] (f2) -- (h);
+  \draw[arr, bleuE, line width=1.3pt] (8.4,0.0) -- node[lbl, text=bleuE, fill=white, inner sep=1pt, pos=0.5]{\textbf{poids transférés}} (8.4,-2.1);
+  \node[lbl, align=left, anchor=west] at (-0.2,-2.5) {peu de labels :\\de 1 à 100 images\\par classe};
+\end{tikzpicture}

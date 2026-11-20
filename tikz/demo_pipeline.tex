@@ -1,0 +1,11 @@
+% Pipeline de la démonstration
+\begin{tikzpicture}
+  \node[nbox, minimum width=27mm, minimum height=15mm] (img) at (0,0) {\textbf{Oxford-IIIT Pets}\\{\scriptsize 3\,680 images}\\{\scriptsize 37 races}};
+  \node[box, minimum width=31mm, minimum height=17mm, line width=1.3pt] (enc) at (4.0,0) {\textbf{Encodeur gelé}\\{\scriptsize DINOv2 / MAE / DeiT}\\{\scriptsize prétraitement identique}};
+  \node[nbox, minimum width=25mm, minimum height=15mm] (z) at (8.7,0) {Embeddings\\$z \in \mathbb{R}^{D}$\\{\scriptsize normalisés, en cache}};
+  \node[gbox, minimum width=34mm, minimum height=10mm, anchor=west] (r) at (10.75, 0.85) {\textbf{(a) Recherche}\\{\scriptsize similarité cosinus, top-$k$}};
+  \node[gbox, minimum width=34mm, minimum height=10mm, anchor=west] (c) at (10.75,-0.85) {\textbf{(b) Classification}\\{\scriptsize k-NN, régression logistique}};
+  \draw[arr] (img) -- (enc); \draw[arr] (enc) -- node[lbl, above=2pt]{[CLS] ou} node[lbl, below=2pt]{moy. patches} (z);
+  \draw[arr] (z.east) -- (r.west); \draw[arr] (z.east) -- (c.west);
+  \node[lbl] at (4.0,-1.35) {aucun poids de l'encodeur n'est modifié};
+\end{tikzpicture}

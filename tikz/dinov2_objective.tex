@@ -1,0 +1,24 @@
+% DINOv2 : objectif d'entraînement = DINO (image) + iBOT (patches) + KoLeo
+\begin{tikzpicture}
+  % professeur
+  \node[box, minimum width=34mm, minimum height=11mm] (T) at (0,1.15) {\textbf{Professeur} (EMA)\\{\scriptsize vues globales, sans masque}};
+  \node[box, minimum width=34mm, minimum height=11mm] (S) at (0,-1.15) {\textbf{Élève} ViT\\{\scriptsize vues globales \textbf{masquées} + locales}};
+  \draw[arr, vertE, line width=1.1pt] (S.north) -- node[lbl, right, text=vertE]{EMA} (T.south);
+  % tokens
+  \node[nbox, minimum width=17mm, minimum height=6mm] (tc) at (3.9, 1.5) {[CLS]};
+  \node[nbox, minimum width=17mm, minimum height=6mm] (tp) at (3.9, 0.75) {patches};
+  \node[nbox, minimum width=17mm, minimum height=6mm] (sc) at (3.9,-0.75) {[CLS]};
+  \node[nbox, minimum width=17mm, minimum height=6mm] (sp) at (3.9,-1.5) {patches [M]};
+  \draw[arr] (T.east) -- (tc.west); \draw[arr] (T.east) -- (tp.west);
+  \draw[arr] (S.east) -- (sc.west); \draw[arr] (S.east) -- (sp.west);
+  % pertes
+  \node[gbox, minimum width=40mm, minimum height=9mm] (Ld) at (8.6, 0.55) {$\mathcal{L}_{\text{DINO}}$ : niveau \textbf{image}\\{\scriptsize CE entre [CLS] prof. et élève}};
+  \node[obox, minimum width=40mm, minimum height=9mm] (Li) at (8.6,-0.55) {$\mathcal{L}_{\text{iBOT}}$ : niveau \textbf{patch}\\{\scriptsize CE sur les patches masqués}};
+  \node[vbox, minimum width=40mm, minimum height=9mm] (Lk) at (8.6,-1.85) {$\mathcal{L}_{\text{KoLeo}}$ : \textbf{étalement}\\{\scriptsize des [CLS] dans le batch}};
+  \draw[arr] (tc.east) -- (Ld.west); \draw[arr] (sc.east) -- (Ld.west);
+  \draw[arr] (tp.east) -- (Li.west); \draw[arr] (sp.east) -- (Li.west);
+  \draw[arr] (sc.east) to[out=-20, in=180] (Lk.west);
+  \node[font=\small, align=center] (tot) at (12.6,-0.55) {$\mathcal{L} = \mathcal{L}_{\text{DINO}}$\\$+\,\mathcal{L}_{\text{iBOT}}$\\$+\,\lambda\,\mathcal{L}_{\text{KoLeo}}$};
+  \draw[arr] (Ld.east) -- (tot.west); \draw[arr] (Li.east) -- (tot.west); \draw[arr] (Lk.east) -- (tot.west);
+  \node[lbl] at (3.9,2.2) {têtes séparées + centrage Sinkhorn-Knopp};
+\end{tikzpicture}

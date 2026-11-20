@@ -1,0 +1,25 @@
+% Couleurs et styles TikZ partagés (présentation + rapport)
+\definecolor{bleuE}{HTML}{1F5F8B}
+\definecolor{bleuclair}{HTML}{E6F0F7}
+\definecolor{orangeE}{HTML}{E07B1A}
+\definecolor{orangeclair}{HTML}{FCEBD9}
+\definecolor{vertE}{HTML}{2E8B57}
+\definecolor{vertclair}{HTML}{E2F2E8}
+\definecolor{violetE}{HTML}{6250D6}
+\definecolor{violetclair}{HTML}{ECEAFB}
+\definecolor{grisE}{HTML}{5F5F5F}
+\definecolor{grisclair}{HTML}{F2F2F2}
+\definecolor{rougeE}{HTML}{C0392B}
+
+\tikzset{
+  box/.style={draw=bleuE, fill=bleuclair, rounded corners=3pt, align=center, font=\small,
+              inner sep=3pt, minimum height=8mm, line width=0.7pt},
+  obox/.style={box, draw=orangeE, fill=orangeclair},
+  gbox/.style={box, draw=vertE, fill=vertclair},
+  vbox/.style={box, draw=violetE, fill=violetclair},
+  nbox/.style={box, draw=grisE, fill=grisclair},
+  arr/.style={-{Stealth[length=2.2mm]}, line width=0.8pt, draw=grisE},
+  darr/.style={arr, dashed},
+  lbl/.style={font=\scriptsize, text=grisE, align=center},
+  tok/.style={draw=white, line width=0.5pt, minimum size=2.6mm, inner sep=0pt},
+}

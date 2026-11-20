@@ -1,0 +1,15 @@
+% Réutilisation des représentations pré-entraînées : du moins au plus coûteux
+\begin{tikzpicture}[opt/.style={text width=66mm, align=left, minimum height=7mm, anchor=west}]
+  \node[box, minimum width=30mm, minimum height=40mm, line width=1.3pt] (enc) at (0,0)
+    {\textbf{Encodeur}\\\textbf{pré-entraîné}\\[3pt]{\scriptsize DINOv2, MAE\dots}\\[6pt]{\scriptsize représentations}\\{\scriptsize globales [CLS]}\\{\scriptsize + denses (patches)}};
+  \node[gbox, opt] (a) at (3.4, 1.8) {\textbf{k-NN / recherche} \hfill {\scriptsize 0 paramètre appris}};
+  \node[gbox, opt] (b) at (3.4, 0.9) {\textbf{Sonde linéaire} \hfill {\scriptsize $D \times C$ paramètres}};
+  \node[gbox, opt] (c) at (3.4, 0.0) {\textbf{Tête dense} {\scriptsize (segm., profondeur)} \hfill {\scriptsize tête seule}};
+  \node[obox, opt] (d) at (3.4,-0.9) {\textbf{PEFT} {\scriptsize (LoRA, adapters)} \hfill {\scriptsize $\approx$ 0,1 à 5 \% des poids}};
+  \node[obox, opt] (e) at (3.4,-1.8) {\textbf{Fine-tuning complet} \hfill {\scriptsize 100 \% des poids}};
+  \foreach \n in {a,b,c,d,e} \draw[arr] (enc.east) -- (\n.west);
+  \draw[-{Stealth[length=3mm]}, line width=2pt, grisE!70] (10.75,2.1) -- (10.75,-2.1);
+  \node[lbl, anchor=west] at (10.95, 1.35) {\textbf{encodeur gelé}\\une passe suffit};
+  \node[lbl, anchor=west] at (10.95,-0.1) {coût de calcul,\\labels nécessaires,\\risque de\\sur-apprentissage};
+  \node[lbl, anchor=west] at (10.95,-1.6) {\textbf{encodeur modifié}};
+\end{tikzpicture}

@@ -1,0 +1,16 @@
+% Paradigme des Vision Foundation Models : pré-entraîner une fois, adapter partout
+\begin{tikzpicture}
+  \node[nbox, minimum width=31mm, minimum height=24mm] (data) at (0,0)
+    {\textbf{Données massives}\\non étiquetées\\[3pt]{\scriptsize web, $10^8$ à $10^9$ images}};
+  \node[box, minimum width=33mm, minimum height=26mm, line width=1.3pt] (vfm) at (5.9,0)
+    {\textbf{Vision Foundation}\\\textbf{Model}\\[3pt]{\scriptsize encodeur ViT}\\{\scriptsize $10^7$ à $10^9$ paramètres}};
+  \draw[arr] (data.east) -- node[lbl, above=1pt]{pré-entraînement\\\textbf{auto-supervisé}} node[lbl, below=1pt]{coûteux,\\une seule fois} (vfm.west);
+
+  \node[gbox, minimum width=36mm, minimum height=6mm, anchor=west] (t1) at (10.0, 1.6) {Classification};
+  \node[gbox, minimum width=36mm, minimum height=6mm, anchor=west] (t2) at (10.0, 0.8) {Recherche d'images};
+  \node[gbox, minimum width=36mm, minimum height=6mm, anchor=west] (t3) at (10.0, 0.0) {Segmentation};
+  \node[gbox, minimum width=36mm, minimum height=6mm, anchor=west] (t4) at (10.0,-0.8) {Estimation de profondeur};
+  \node[gbox, minimum width=36mm, minimum height=6mm, anchor=west] (t5) at (10.0,-1.6) {Détection, suivi, \dots};
+  \foreach \t in {t1,t2,t3,t4,t5} \draw[arr] (vfm.east) -- (\t.west);
+  \node[lbl, above=1mm of t1] {adaptation légère, \textbf{peu de labels}};
+\end{tikzpicture}

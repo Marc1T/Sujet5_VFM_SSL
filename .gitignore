@@ -1,0 +1,27 @@
+# Données téléchargées et caches (régénérés par le notebook, voir README)
+data/
+features/
+
+# Fichiers intermédiaires LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
